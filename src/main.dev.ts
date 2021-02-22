@@ -67,6 +67,24 @@ const installExtensions = async () => {
     .catch(console.log);
 };
 
+const autoRun = () => {
+  const exeName = path.basename(process.execPath)
+  app.setLoginItemSettings({
+    openAtLogin: true,
+    openAsHidden: false,
+    path: process.execPath,
+    args: [
+      '--processStart', `"${exeName}"`,
+    ]
+  })
+}
+const fullScreen = () => {
+  if (process.platform === 'darwin') {
+    mainWindow?.setSimpleFullScreen(true);
+  } else {
+    mainWindow?.setFullScreen(true);
+  }
+}
 const createWindow = async () => {
   if (
     process.env.NODE_ENV === 'development' ||
@@ -89,14 +107,14 @@ const createWindow = async () => {
     height: 728,
     icon: getAssetPath('icon.png'),
     center: true,
-    frame: false,
+    frame: true,
     "resizable": true,
     titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: true,
     },
   });
-
+  // mainWindow.webContents.openDevTools();
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   // @TODO: Use 'ready-to-show' event
@@ -111,14 +129,17 @@ const createWindow = async () => {
       mainWindow.show();
       mainWindow.focus();
     }
+
+    // application auto power on
+    if (!app.getLoginItemSettings().openAtLogin) {
+      autoRun();
+    }
   });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 
-  // const menuBuilder = new MenuBuilder(mainWindow);
-  // menuBuilder.buildMenu();
   if (process.platform === 'darwin') {
     Menu.setApplicationMenu(null);
   } else {
@@ -134,7 +155,15 @@ const createWindow = async () => {
   ipcMain.on('unclock', () => {
     setScreenLock(false);
   });
+  ipcMain.on('clock', () => {
+    setScreenLock(true);
+  });
+  ipcMain.on('close-window', () => {
+    userClose = true;
+    app.exit(0);
+  });
 
+  // on the top screen of the window
   setInterval(() => {
     if (!mainWindow?.isAlwaysOnTop()) {
       mainWindow?.setAlwaysOnTop(true);
@@ -144,11 +173,11 @@ const createWindow = async () => {
     }
     if (mainWindow?.isMinimized()) {
       mainWindow.show();
-      mainWindow.setFullScreen(true);
+      fullScreen();
     }
   }, 300);
-  mainWindow.setFullScreen(true);
-  setScreenLock(true);
+  // full Screen！
+  fullScreen();
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   // new AppUpdater();

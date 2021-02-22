@@ -21,6 +21,10 @@ export default {
           },
         },
       },
+      {
+        test: /\.node$/,
+        use: 'native-ext-loader'
+      }
     ],
   },
 

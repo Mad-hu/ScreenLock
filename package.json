@@ -30,15 +30,16 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "ScreenLock",
+    "appId": "org.erb.ElectronReact.screenlock",
     "files": [
       "dist/",
       "node_modules/",
       "index.html",
       "main.prod.js",
       "main.prod.js.map",
-      "package.json"
+      "package.json",
+      "lockScreen.node"
     ],
     "afterSign": ".erb/scripts/Notarize.js",
     "mac": {
@@ -65,9 +66,22 @@
         }
       ]
     },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": false,
+      "menuCategory": false,
+      "runAfterFinish": true
+    },
     "win": {
+      "requestedExecutionLevel": "highestAvailable",
       "target": [
-        "nsis"
+        {
+          "target": "nsis"
+        }
       ]
     },
     "linux": {
@@ -252,6 +266,7 @@
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.4",
     "history": "^5.0.0",
+    "native-ext-loader": "^2.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
