@@ -1,7 +1,7 @@
 {
   "name": "screenlock",
   "productName": "screenlock",
-  "version": "2.3.0",
+  "version": "0.0.1",
   "description": "ScreenLock based on Electron-react-boilerplate",
   "main": "./main.prod.js",
   "author": {
