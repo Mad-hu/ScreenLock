@@ -25,7 +25,11 @@ git clone https://github.com/Mad-hu/ScreenLock.git
 cd ScreenLock
 yarn
 ```
-
+## File Structure
+- .erb: project config
+- assets: app icons
+- screenlock-node: keyboard shortcuts Lock cpp project
+- src: base application
 ## Starting Development
 
 Start the app in the `dev` environment:
