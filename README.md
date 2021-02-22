@@ -45,7 +45,30 @@ To package apps for the local platform:
 ```bash
 yarn package
 ```
+## Auto power on !importent
+electron builder config. package.json
+``` package.json
+"win": {
+      "requestedExecutionLevel": "highestAvailable", // is require
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
+    }
+```
+if you want auto power on and keyboard shortcuts Lock (Ctrl + Alt + delete) is working, next change the windows computer UAC. regedit.
+``` reg
+Windows Registry Editor Version 5.00
 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
+"ConsentPromptBehaviorAdmin"=dword:00000000
+"EnableLUA"=dword:00000000
+"EnableUIADesktopToggle"=dword:00000000
+"PromptOnSecureDesktop"=dword:00000000
+"ValidateAdminCodeSignatures"=dword:00000000
+"FilterAdministratorToken"=dword:00000000
+```
 ## Maintainers
 
 - [Mad-hu](https://github.com/Mad-hu)
