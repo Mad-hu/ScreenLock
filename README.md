@@ -17,6 +17,12 @@ Screen Lock based on Electron-react-boilerplate, Screen Lock、keyboard shortcut
   - Ctrl + Alt + delete
   - ....
 - application auto power on
+  
+| Important functions                                                            |          | MacOS  | Windows |
+| ----------------------------------------------------------------- | ------------------- | :--: | :-----: |
+| Screen Lock                                   |   |  ✅  |   ✅    |
+| keyboard shortcuts Lock                       |     |  ❌  |   ✅    |
+| auto power on                                  |    |  ✅  |   ✅    |
 ## Install
 First, clone the repo via git and install dependencies:
 
@@ -73,6 +79,11 @@ Windows Registry Editor Version 5.00
 
 - [Mad-hu](https://github.com/Mad-hu)
 
+## Reference Documentation
+- [windows keyboard shortcuts Lock](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ms644985(v=vs.85)?redirectedfrom=MSDN)
+- [MacOS keyboard shortcuts Lock](https://developer.apple.com/documentation/coregraphics/quartz_event_services)
+- [c++屏蔽Win10系统快捷键](https://www.cnblogs.com/tiandsp/p/10275683.html)
+  
 ## License
 
 MIT © 
