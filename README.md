@@ -9,7 +9,7 @@
 <br>
 
 ## Abstract
-Screen Lock based on Electron-react-boilerplate, uses Electron, React, React Router, Webpack and React Fast Refresh.
+Screen Lock based on Electron-react-boilerplate, Screen Lock、keyboard shortcuts Lock、application auto power on
 - Screen Lock
 - keyboard shortcuts Lock 
   - Alt + Tab
